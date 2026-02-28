@@ -16,14 +16,16 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
-          cache: 'npm'
+          node-version: '20'
 
-      - name: Clear npm cache
-        run: npm cache clean --force
+      - name: Clear npm cache and remove lock file
+        run: npm cache clean --force && rm -f package-lock.json
 
       - name: Install dependencies
-        run: npm ci --legacy-peer-deps
+        run: npm install
+
+      - name: Rebuild native modules
+        run: npm rebuild
 
       - name: Build project
         env:
