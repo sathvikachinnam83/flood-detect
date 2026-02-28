@@ -6,7 +6,7 @@ on:
       - master
 
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
@@ -14,7 +14,7 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: read
       pages: write
       id-token: write
 
@@ -27,14 +27,8 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Clear npm cache and remove lock file
-        run: npm cache clean --force && rm -f package-lock.json
-
       - name: Install dependencies
-        run: npm install
-
-      - name: Rebuild native modules
-        run: npm rebuild
+        run: npm install --legacy-peer-deps
 
       - name: Build project
         env:
