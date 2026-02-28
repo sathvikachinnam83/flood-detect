@@ -1,0 +1,5 @@
+{
+  "name": "Crowd Hydra",
+  "description": "Smart urban flood prediction and alert system using Random Forest ML.",
+  "requestFramePermissions": ["geolocation"]
+}
